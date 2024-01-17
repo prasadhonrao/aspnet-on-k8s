@@ -2,16 +2,26 @@ using Product.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddEnvironmentVariables();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddHttpClient<IProductService, ProductService>(client =>
-{
-    client.BaseAddress = new Uri("http://localhost:5191");
-});
+// Access configuration
+var configuration = builder.Configuration;
+// Access a specific configuration value
+var apiUrl = configuration["ApiConfigs:product:Uri"];
+Console.WriteLine("UI: " + apiUrl);
 
-//services.AddHttpClient<IEventCatalogService, EventCatalogService>(c =>
-//                c.BaseAddress = new Uri(config["ApiConfigs:EventCatalog:Uri"]));
+//builder.Services.AddHttpClient<IProductService, ProductService>(client =>
+//{
+//    client.BaseAddress = new Uri(apiUrl);
+//});
+
+builder.Services.AddHttpClient<IProductService, ProductService>(
+    (provider, client) => {
+        client.BaseAddress = new Uri(provider.GetService<IConfiguration>()?["ApiConfigs:product:Uri"] ?? throw new InvalidOperationException("Missing config"));
+    });
 
 var app = builder.Build();
 

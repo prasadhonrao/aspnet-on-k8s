@@ -33,23 +33,23 @@ docker ps
 ## Create ProudctDb Database
 
 ```sql
-docker exec -it sql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "P@ssw0rd" -Q "CREATE DATABASE ProductDb"
+docker exec -it sql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "P@ssw0rd!" -Q "CREATE DATABASE ProductDb"
 ```
 
 ## Create Product Table
 
 ```sql
-docker exec -it sql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "P@ssw0rd" -d ProductDb -Q "CREATE TABLE Product (Id INT PRIMARY KEY IDENTITY(1,1), Name NVARCHAR(100))"
+docker exec -it sql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "P@ssw0rd!" -d ProductDb -Q "CREATE TABLE Product (Id INT PRIMARY KEY IDENTITY(1,1), Name NVARCHAR(100))"
 ```
 
 ## Insert Data into Product Table
 
 ```sql
-docker exec -it sql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "P@ssw0rd" -d ProductDb -Q "INSERT INTO Product (Name) VALUES ('iPhone')"
+docker exec -it sql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "P@ssw0rd!" -d ProductDb -Q "INSERT INTO Product (Name) VALUES ('iPhone')"
 ```
 
 ## Check if data is inserted
 
 ```sql
-docker exec -it sql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "P@ssw0rd" -d ProductDb -Q "SELECT * FROM Product"
+docker exec -it sql /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "P@ssw0rd!" -d ProductDb -Q "SELECT * FROM Product"
 ```

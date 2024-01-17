@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  product.ui:
+    image: ${DOCKER_REGISTRY-}product.ui
+    build:
+      context: .
+      dockerfile: Product.UI/Dockerfile
+
+  product.api:
+    image: ${DOCKER_REGISTRY-}product.api
+    build:
+      context: .
+      dockerfile: Product.API/Dockerfile
+

@@ -2,8 +2,10 @@
 using Product.API.Data;
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Configuration.AddEnvironmentVariables();
+
 var connectionString = builder.Configuration.GetConnectionString("ProductAPIContext") ?? throw new InvalidOperationException("Connection string 'ProductAPIContext' not found.");
-Console.WriteLine(connectionString);
+Console.WriteLine("API Connection string" + connectionString);
 
 builder.Services.AddDbContext<ProductAPIContext>(options =>
     options.UseSqlServer(connectionString ?? throw new InvalidOperationException("Connection string 'ProductAPIContext' not found.")));
